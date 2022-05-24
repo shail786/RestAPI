@@ -8,6 +8,6 @@ public interface IProductService {
 	
 	Integer saveProduct(Product p);
 	List<Product>getAllProducts();
-	Integer getOneProduct(Integer id);
+	Product getOneProduct(Integer id);
 	
 }

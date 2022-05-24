@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.exception.ProductNotFoundException;
 import com.example.demo.model.Product;
 import com.example.demo.repository.ProductRepository;
 import com.example.demo.service.IProductService;
@@ -32,17 +33,13 @@ public class ProductServiceImpl implements IProductService {
 	}
 
 	@Override
-	public Integer getOneProduct(Integer id) {
-		Optional<Product> opt = repo.findById(id);
-		if(opt.isPresent())
-		{
-			Product p = opt.get();
-		}
-		
-		return null;
+	public Product getOneProduct(Integer id) {
+		return repo.findById(id).orElseThrow(
+						()-> new ProductNotFoundException("Not Found")	);
+
+
+	
 	}
-
-
 
 
 }
